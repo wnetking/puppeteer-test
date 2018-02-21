@@ -1,49 +1,10 @@
-// const puppeteer = require('puppeteer');
-// const fs = require('fs');
-// const PNG = require('pngjs').PNG;
-// const pixelmatch = require('pixelmatch');
-// const devices = require('puppeteer/DeviceDescriptors');
-// const config = require('./config');
-
-// (async () => {
-
-//   const browser = await puppeteer.launch(config.launch);
-  
-//   browser.on('disconnected', getDiff)
-  
-//   const page = await browser.newPage();
-//   await page.goto(config.path);
-//   await page.setViewport(config.desktopViewport);
-//   //   await page.click('main  div.block-new-series div div.serial-top  div.field-img > a')
-//   // await page.once('load', async () => {
-//     // });
-//   await page.screenshot({ path: 'example.png', fullPage: true });
-//   await page.waitFor(5000);
-//   await page.screenshot({ path: 'example2.png', fullPage: true });
-//   await browser.close();
-// })();
-
-
-// function getDiff() {
-//   var img1 = fs.createReadStream('example.png').pipe(new PNG()).on('parsed', doneReading),
-//     img2 = fs.createReadStream('example2.png').pipe(new PNG()).on('parsed', doneReading),
-//     filesRead = 0;
-
-//   function doneReading() {
-//     if (++filesRead < 2) return;
-
-//     var diff = new PNG({ width: img1.width, height: img1.height });
-
-//     pixelmatch(img1.data, img2.data, diff.data, img1.width, img1.height, { threshold: 0.5 });
-
-//     diff.pack().pipe(fs.createWriteStream('diff.png'));
-//   }
-// }
-
-
 const puppeteer = require('puppeteer');
 const expect = require('chai').expect;
+const fs = require('fs');
+const PNG = require('pngjs').PNG;
 const {startServer} = require('polyserve');
+const testDir = './test'
+const goldenDir = './test/golden'
 
 describe('👀 screenshots are correct', function() {
   let polyserve, browser, page;
