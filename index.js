@@ -1,15 +1,14 @@
-const puppeteer = require('puppeteer');
-const {config} = require('./config');
-const devices = require('puppeteer/DeviceDescriptors');
+const { config } = require('./config');
+const { layoutFullShot } = require('./src/layoutFullShot');
+const { createDirs } = require('./src/createDirs');
 
-(async () => {
-  const browser = await puppeteer.launch(config.launch);
-  const page = await browser.newPage();
-  await page.goto(config.path);
-  await page.setViewport(config.desktopViewport);
-//   await page.click('main  div.block-new-series div div.serial-top  div.field-img > a')
-  await page.waitFor(1000);
-  await page.screenshot({path: 'example.png', fullPage: true});
-  
-  await browser.close();
-})();
+createDirs();
+layoutFullShot(1);
+layoutFullShot(
+  2,
+  'index.php?live_configurator&header_layout=5&top_layout=12&home_layout=8&footer_layout=2'
+);
+layoutFullShot(
+  3,
+  'index.php?live_configurator&header_layout=6&top_layout=13&home_layout=9&footer_layout=3'
+);

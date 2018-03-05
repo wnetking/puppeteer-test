@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.1.2",
+    "merge-img": "^2.1.2",
+    "mocha": "^5.0.0",
     "pixelmatch": "^4.0.2",
     "puppeteer": "^1.1.0"
   }
